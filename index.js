@@ -1,10 +1,8 @@
 const express = require('express');
 const app = express();
 
-// Use the port provided by Render, or default to 3000 locally
 const PORT = process.env.PORT || 3000;
 
-// Sample list of users with the required attributes
 const users = [
   {
     LastName: "Eniceta",
@@ -26,16 +24,16 @@ const users = [
   }
 ];
 
-// Root route
+// Root route now directly returns the JSON users list
 app.get('/', (req, res) => {
-  res.send('Welcome to the User API! Go to /users to see the list of users.');
+  res.json(users);
 });
 
-// API endpoint that returns the list of users
+// Optional: You can keep or remove this, it's safe to leave
 app.get('/users', (req, res) => {
   res.json(users);
 });
 
 app.listen(PORT, () => {
-  console.log('Server is running on port ${PORT}');
+  console.log(`Server is running on port ${PORT}`);
 });
